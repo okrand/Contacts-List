@@ -1,0 +1,33 @@
+\documentclass{article}
+%Packages
+\usepackage[margin=1in]{geometry}
+\usepackage{setspace}
+\usepackage[leftmargin = 1in, rightmargin = 0in, vskip = 0in]{quoting}
+\usepackage{microtype}
+
+\begin{document}
+\setstretch{2}
+\raggedright
+
+%Essay Heading
+Orkun Krand \\ Dr. Shubham Jain \\ CS541 - App Development for Smart Devices \\ March 2, 2018
+    
+    
+%Title
+	\centerline{Contacts List} 
+
+I was able to complete all the requirements of this assignment. In order to minimize the amount of code I need to write, I initially created fragments. I was going to use a single activity and just change the fragments in it, but due to the assignment requirements for the portrait mode, I created multiple activities that only used one fragment each. I was able to reuse a bunch of code from the last assignment, especially the code for array adapter. I couldn't spend too much time on formatting of the phone number. It takes 10 characters maximum and displays numbers as they were entered.
+\hfill \linebreak
+
+I decided to use a database to store contact information. I implemented Room but it gave me trouble because it wouldn't let me write to database on the main thread in case the writing took too long. Ideally, I should've used LiveData but instead, I just disabled that error and used allowMainThreadQueries since I knew I wasn't going to write a lot of data at once. Once I allowed the main thread queries, the database write and read wasn't a problem anymore. I used two database tables. One to store basic information about contacts, and another to store relationships.
+\hfill \linebreak
+
+Saving the pictures associated with profiles on the other hand, was a painful process as I had trouble getting the image at first, then spent a lot of time trying to figure out how to save it. As for zooming into the picture on click, that was pretty easy thanks to the documentation I found that explained exactly what the assignment required. Luckily, the long function that is responsible for the animation required minimal editing so I was able to use that as is. 
+\hfill \linebreak
+
+Writing the landscape mode wasn't too difficult thanks to the fragments. The biggest difference between landscape and portrait was how adding a new contact is handled. On portrait, because the new contact details is in a different activity, I need to make sure the listview is updated when the details activity is finished. This took some searching and finally, I decided to just add the last contact if it is not already visible on resume. So I overloaded the equals function of my custom contact class. On landscape, this was much simpler. I just restarted the fragment upon addition which reset the list so it included the new contact.
+\hfill \linebreak
+
+Overall, I thought this was a difficult assignment. I feel confident about fragments and database usage now. I could barely finish the assignment in time, so I couldn't spend any extra time making it prettier or more user friendly beyond the requirements of the assignment. 
+
+\end{document}
